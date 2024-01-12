@@ -6,14 +6,17 @@ There are two different branches associated with this lesson.
   - This branch includes all the added notes for you to review and compare with your own code-along.
 
 ### Topics Covered
-- Completing Login Component
-- Storing **token** to `localstorage`.
+- React-Router-DOM
+  - Install and use
+- useEffect()
 
 ### What Should Already Be Understood
 - Creating a React Application
   - File / Folder structure
 - Reusable Components
 - Props
+- useState & useRef
+- localstorage
 
 ## Files / Folders Provided in this Lesson
 This project is meant to build upon **Part 1** lecture. Building out a new project will require the previous code in order to function correctly. Creating a new application will also require the install of `reactstrap` and `bootstrap`. 
@@ -23,23 +26,17 @@ This project is meant to build upon **Part 1** lecture. Building out a new proje
 
 - movies
   - assets
-    - `passing token to app.png`
+    - `token_route_path.png`
   - src
     - components
       - auth
-        - [Auth.jsx](./src/components/auth/Auth.jsx)
+        - Auth.jsx
         - signup
           - Signup.jsx
         - login
-          - [Login.jsx](./src/components/auth/login/Login.jsx)
+          - Login.jsx
     - `App.jsx`
-      - *boilerplate code removed*
     - [App.css](./src/App.css) (provided code)
-
-- `notes.md`: details the various notes taught throughout this lesson.
-- **assets folder**: additional notes
-  - screenshot of where to update server
-  - component tree example
 
 ## Resources
 - [Reactstrap Docs](https://reactstrap.github.io/?path=/docs/components-forms--input#hidden-labels)
@@ -47,9 +44,42 @@ This project is meant to build upon **Part 1** lecture. Building out a new proje
 - [w3Schools useRef](https://www.w3schools.com/react/react_useref.asp)
 - [Hook API Reference React](https://reactjs.org/docs/hooks-reference.html#useref)
 - [NPM Cors Package](https://www.npmjs.com/package/cors)
+- [setItem()](https://www.w3schools.com/jsref/met_storage_setitem.asp)
+- [React Router Docs](https://reactrouter.com/en/main)
+- [Browser-Router](https://reactrouter.com/en/main/router-components/browser-router)
+- [Route](https://reactrouter.com/en/main/route/route)
+- [Navigate](https://reactrouter.com/en/main/components/navigate)
+- [w3Schools useEffect](https://www.w3schools.com/react/react_useeffect.asp)
+- [useEffect Hook](https://reactjs.org/docs/hooks-effect.html)
+- [Explanation of useEffect](https://dmitripavlutin.com/react-useeffect-explanation/)
+
+### useEffect() Notes
+- Allows us to perform side effects in functional components.
+- Accepts two arguments
+  - function
+  - dependency
+    - optional
+    - Can denote a specific event to to trigger
+
+```js
+useEffect(() => {
+  // Runs on every render
+});
+
+useEffect(() => {
+  // Runs only on the first render
+}, []);
+
+useEffect(() => {
+  // Runs on first render
+  // Runs any time any dependency changes
+}, [state]);
+```
 
 # Challenge
-**Update Token in Signup**
-- Using the same concepts that was used to set the Login component, provide access to the Signup component so that it can update the token when a user creates a new account.
-
-The Solution can be found in [Signup.jsx](./src/components/auth/signup/Signup.jsx)
+```js
+/*
+    - Set the Signup component to store our session token
+    - After the user signs up, have the route navigate to the /movie endpoint to display our placeholder page.
+*/
+```

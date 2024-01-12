@@ -9,7 +9,7 @@ function Auth(props) {
             <Container>
                 <Row>
                     <Col md="6">
-                        <Signup />
+                        <Signup updateToken={props.updateToken}/>
                     </Col>
                 </Row>
                 <Row>
