@@ -8,6 +8,7 @@ There are two different branches associated with this lesson.
 ### Topics Covered
 - React-Router-DOM
   - Install and use
+  - useNavigate
 - useEffect()
 
 ### What Should Already Be Understood
