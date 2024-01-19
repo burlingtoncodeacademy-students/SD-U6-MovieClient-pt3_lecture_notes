@@ -1,12 +1,15 @@
 import React, { useRef } from 'react'
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
+import FullButton from '../../buttons/FullButton';
+import { useNavigate } from 'react-router-dom';
 
-function Signup({updateToken}) {
+function Signup({ updateToken }) {
 
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -33,10 +36,16 @@ function Signup({updateToken}) {
         try {
             const response = await fetch(url, requestOptions);
             const data = await response.json();
-            
-            updateToken(data.token)
 
-        } catch(err) {
+            console.log(data)
+            if(data.message === "Success") {
+                updateToken(data.token)
+                navigate('/movie')
+            } else {
+                alert(data.message);
+            }
+
+        } catch (err) {
             console.error(err.message);
         }
     }
@@ -47,33 +56,35 @@ function Signup({updateToken}) {
             <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label>First Name:</Label>
-                    <Input 
+                    <Input
                         innerRef={firstNameRef}
                         autoComplete='off'
                     />
                 </FormGroup>
                 <FormGroup>
                     <Label>Last Name:</Label>
-                    <Input 
+                    <Input
                         innerRef={lastNameRef}
                         autoComplete='off'
                     />
                 </FormGroup>
                 <FormGroup>
                     <Label>Email:</Label>
-                    <Input 
+                    <Input
                         innerRef={emailRef}
                         autoComplete='off'
                     />
                 </FormGroup>
                 <FormGroup>
                     <Label>Password:</Label>
-                    <Input 
+                    <Input
                         innerRef={passwordRef}
                         autoComplete='off'
                     />
                 </FormGroup>
-                <Button type='submit'>Signup</Button>
+                <FullButton>
+                    <Button type='submit'>Signup</Button>
+                </FullButton>
             </Form>
         </>
     )

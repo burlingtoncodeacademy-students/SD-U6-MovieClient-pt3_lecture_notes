@@ -1,12 +1,15 @@
-import {useRef} from 'react'
-import {Form, FormGroup, Input, Button } from 'reactstrap';
+import { useRef } from 'react'
+import { Form, FormGroup, Input, Button } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
+import FullButton from '../../buttons/FullButton';
 
-function Login({updateToken}) {
+function Login({ updateToken }) {
 
     const emailRef = useRef();
     const passwordRef = useRef();
+    const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {   
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         let body = JSON.stringify({
@@ -17,7 +20,7 @@ function Login({updateToken}) {
         const url = 'http://localhost:4000/user/login';
 
         try {
-            
+
             const res = await fetch(url, {
                 method: 'POST',
                 headers: new Headers({
@@ -27,8 +30,14 @@ function Login({updateToken}) {
             })
 
             const data = await res.json();
-            
-            updateToken(data.token)
+            // console.log(data)
+
+            if (data.message === 'Logged in!') {
+                updateToken(data.token)
+                navigate('/movie')
+            } else {
+                alert(data.message)
+            }
 
         } catch (err) {
             console.error(err)
@@ -46,7 +55,7 @@ function Login({updateToken}) {
                         innerRef={emailRef}
                         type="email"
                         autoComplete="off"
-                        />
+                    />
                 </FormGroup>
                 <FormGroup>
                     <Input
@@ -54,9 +63,11 @@ function Login({updateToken}) {
                         innerRef={passwordRef}
                         type="password"
                         autoComplete="off"
-                        />
+                    />
                 </FormGroup>
-                <Button type='submit'>Login</Button>
+                <FullButton>
+                    <Button type='submit'>Login</Button>
+                </FullButton>
             </Form>
         </>
     )
