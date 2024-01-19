@@ -24,6 +24,9 @@ This project is meant to build upon **Part 1** lecture. Building out a new proje
 - `npm install --save bootstrap`
   - review [index.js](./src/index.js) and `import 'bootstrap/dist/css/bootstrap.min.css';`
 
+**Running:**
+- You will need to start up **MongoDB** and your **Movie Server**. Navigate to your server project within the terminal and run `nodemon` or `npm start` and have your server going while building the Movie application.
+
 - movies
   - assets
     - `token_route_path.png`
